@@ -1,5 +1,6 @@
 // @ts-check
 import React, { Component } from "react";
+import { BrowserRouter as Router,Switch, Route, Link } from "react-router-dom";
 import Button from "./Button";
 import Form from "./Form";
 import Fetch from "./Fetch";
@@ -8,25 +9,21 @@ import "./App.css";
 
 function App(props) {
   return (
+    <Router>
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <Button size="small">Click!</Button>
-        <Form />
-        <Fetch />
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn {props.name}
-        </a>
+          <Link to="/">Home</Link>
+          <Link to="/form">Form</Link>
+          <Link to="/button">Button</Link>
+        <Switch>
+          <Route exact path="/" component={Fetch} />
+          <Route exact path="/form" component={Form} />
+          <Route exact path="/button" component={Button} />
+        </Switch>
       </header>
     </div>
+    </Router>
   );
 }
 
