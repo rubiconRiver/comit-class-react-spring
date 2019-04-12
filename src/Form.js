@@ -16,6 +16,7 @@ export default function Form(props) {
 
   function onSubmit() {
     alert(name);
+    //this should be the endpoint for your POST API in spring
     fetch("http://localhost:9000/greetings", {
       method: 'POST',
       headers: {
@@ -24,10 +25,7 @@ export default function Form(props) {
       body: JSON.stringify({
         name: name
       })
-      })
-      console.log(JSON.stringify({
-        name: name
-      }));
+      });
   }
   
   return (

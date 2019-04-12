@@ -9,6 +9,7 @@ export default function Fetch(props) {
   }, [])
 
   function fetchData() {
+    //This should be the endpoint for your GET Request in Spring
     fetch("http://localhost:9000/greetings", {
         method: 'GET'
     })
