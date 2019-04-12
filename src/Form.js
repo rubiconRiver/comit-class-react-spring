@@ -2,29 +2,38 @@
 import React, { useState } from "react";
 
 export default function Form(props) {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
+  const [name, setName] = useState("");
 
   const onChange = name => event => {
     switch (name) {
       case "firstName":
-        setFirstName(event.target.value);
+        setName(event.target.value);
         break;
-      case "lastName":
-        setLastName(event.target.value);
-        break;
+      default:
+      break;
     }
   };
 
   function onSubmit() {
-    alert(firstName + " " + lastName);
+    alert(name);
+    fetch("http://localhost:9000/greetings", {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        name: name
+      })
+      })
+      console.log(JSON.stringify({
+        name: name
+      }));
   }
-
+  
   return (
     <form onSubmit={onSubmit}>
-      <input type="text" value={firstName} onChange={onChange("firstName")} />
-      <input type="text" value={lastName} onChange={onChange("lastName")} />
+      <input type="text" value={name} onChange={onChange("firstName")} />
       <input type="submit" value="Submit" />
-    </form>
+    </form >
   );
 }

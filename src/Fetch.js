@@ -1,5 +1,6 @@
 // @ts-check
 import React, { useState, useEffect } from "react";
+import Posts from "./Posts";
 
 export default function Fetch(props) {
   const [fetchJSON, setFetchJSON] = useState(undefined);
@@ -8,7 +9,7 @@ export default function Fetch(props) {
   }, [])
 
   function fetchData() {
-    fetch("https://jsonplaceholder.typicode.com/posts", {
+    fetch("http://localhost:9000/greetings", {
         method: 'GET'
     })
       .then(response => response.json())
@@ -17,14 +18,8 @@ export default function Fetch(props) {
 
   return (
     <div>
-      {fetchJSON
-        ? fetchJSON.map(({ id, userId, title, body }) => (
-            <div style={{padding: '10px'}}>
-              <div>Id: {id}</div>
-              <div>UserId: {userId}</div>
-              <div>Title: {title}</div>
-              <div>Body: {body}</div>
-            </div>
+      {fetchJSON ? fetchJSON.map(({ id, name}) => (
+            <Posts id={id} name={name} />
           ))
         : null}
       <button onClick={fetchData}>Fetch</button>
