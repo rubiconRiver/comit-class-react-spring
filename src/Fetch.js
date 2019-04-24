@@ -20,7 +20,8 @@ export default function Fetch(props) {
   return (
     <div>
       {fetchJSON ? fetchJSON.map(({ id, name}) => (
-            <Posts id={id} name={name} />
+        
+            <Posts key={id} id={id} name={name} />
           ))
         : null}
       <button onClick={fetchData}>Fetch</button>
